@@ -1,0 +1,18 @@
+```scala
+class MyClass[T](val value: T) {
+  def printValue(): Unit = {
+    println(value)
+    //To retain type safety at runtime, you can use Manifest[T] or TypeTag[T]
+    //However, this often requires using reflection which may have performance implications.
+    //println(implicitly[Manifest[T]].runtimeClass) //Option 1 using Manifest
+    //println(implicitly[TypeTag[T]].tpe) //Option 2 using TypeTag
+  }
+}
+
+object MainObject extends App {
+  val myInt = new MyClass(10)
+  val myString = new MyClass("hello")
+  myInt.printValue()
+  myString.printValue()
+}
+```
